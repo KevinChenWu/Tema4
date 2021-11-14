@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Mariana Chung B92250 / Kevin Chen B B92215
+# Mariana Chung B92250 / Kevin Chen Wu B92215
 # Solucion problema 4, E13 Procesos aleatorios.
 
 # Los parámetros T, t_final y N son elegidos arbitrariamente
