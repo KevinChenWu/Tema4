@@ -16,14 +16,14 @@ vaZ = stats.uniform(0, np.pi/2)
 
 # Creación del vector de tiempo
 T = 100         # número de elementos
-t_final = 5     # tiempo en segundos
+t_final = 10     # tiempo en segundos
 t = np.linspace(0, t_final, T)
 
 # Inicialización del proceso aleatorio X(t) con N realizaciones
 N = 20
 X_t = np.empty((N, len(t)))    # N funciones del tiempo x(t) con T puntos
 
-# Creación de las muestras del proceso x(t) (C y Z independientes)
+# Creación de las muestras del proceso X(t) (C y Z independientes)
 # Se eligio la constante ω, como π.
 
 for i in range(N):
@@ -58,6 +58,15 @@ corr = np.empty((N, len(desplazamiento)))
 # Nueva figura para la autocorrelación
 plt.figure()
 
+# Se crea de nuevo el proceso X(t) con Ω y Θ como constantes
+# Se eligió la constante ω, como π.
+# Se eligió la constante θ, como 0.
+
+for i in range(N):
+    C = vaC.rvs()
+    x_t = C * np.cos(np.pi*t + 0)
+    X_t[i, :] = x_t
+
 # Cálculo de correlación para cada valor de tau
 for n in range(N):
     for i, tau in enumerate(desplazamiento):
@@ -65,7 +74,7 @@ for n in range(N):
     plt.plot(taus, corr[n, :])
 
 # Valor teórico de correlación
-Rxx = (0.2 + 5**2) * np.cos(np.pi*t + Z) * np.cos(np.pi * (t + taus) + Z)
+Rxx = 25.2 * np.cos(np.pi*t + 0) * np.cos(np.pi * (t + taus) + 0)
 
 # Gráficas de correlación para cada realización y la
 plt.plot(taus, Rxx, '-.', lw=4, label='Correlación teórica')
